@@ -7,9 +7,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.snow.catalogo.model.dto.AutorRequestDTO;
-import com.snow.catalogo.model.dto.IdiomaRequestDTO;
 import com.snow.catalogo.model.entities.Autor;
-import com.snow.catalogo.model.entities.Idioma;
 import com.snow.catalogo.repository.AutorRepository;
 import com.snow.catalogo.service.AutorService;
 import org.junit.jupiter.api.BeforeEach;

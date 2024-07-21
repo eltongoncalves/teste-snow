@@ -237,6 +237,19 @@ Bem-vindo à API do Catálogo de Livros! Esta API permite gerenciar usuários, l
 
 ```
 
+
+
+### Adicionar Variável de Ambiente `PWD`
+
+### Linux
+
+Para adicionar a variável de ambiente `PWD` no Linux, siga estes passos:
+
+```shell
+  export PWD=password
+```
+
+
 ### Execução
 
 ```shell
