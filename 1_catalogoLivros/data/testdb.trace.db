@@ -1,0 +1,12 @@
+2024-07-20 23:23:01.661033-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "IDIOMA" not found (this database is empty); SQL statement:
+insert into idioma (nome,sigla,id) values (?,?,default) [42104-224]
+2024-07-20 23:23:06.510166-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "IDIOMA" not found (this database is empty); SQL statement:
+select i1_0.id,i1_0.nome,i1_0.sigla from idioma i1_0 [42104-224]
+2024-07-20 23:23:26.398379-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "IDIOMA" not found (this database is empty); SQL statement:
+select i1_0.id,i1_0.nome,i1_0.sigla from idioma i1_0 [42104-224]
+2024-07-20 23:24:28.157627-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "IDIOMA" not found (this database is empty); SQL statement:
+insert into idioma (nome,sigla,id) values (?,?,default) [42104-224]
