@@ -1,5 +1,7 @@
 package com.snow.catalogo.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.snow.catalogo.model.dto.AutorRequestDTO;
 import com.snow.catalogo.model.entities.Autor;
 import com.snow.catalogo.service.AutorService;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +15,11 @@ public class AutorController {
 
     private final AutorService autorService;
 
-    public AutorController(AutorService autorService) {
+    private final ObjectMapper objectMapper;
+
+    public AutorController(AutorService autorService, ObjectMapper objectMapper) {
         this.autorService = autorService;
+        this.objectMapper = objectMapper;
     }
 
     @GetMapping
@@ -23,7 +28,8 @@ public class AutorController {
     }
 
     @PostMapping
-    public Autor adicionar(@Validated @RequestBody Autor autor) {
+    public Autor adicionar(@Validated @RequestBody AutorRequestDTO autorRequest) {
+        var autor = objectMapper.convertValue(autorRequest, Autor.class);
         return autorService.adicionar(autor);
     }
 

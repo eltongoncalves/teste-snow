@@ -1,5 +1,7 @@
 package com.snow.catalogo.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.snow.catalogo.model.dto.IdiomaRequestDTO;
 import com.snow.catalogo.model.entities.Idioma;
 import com.snow.catalogo.service.IdiomaService;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +15,11 @@ public class IdiomaController {
 
     private final IdiomaService idiomaService;
 
-    public IdiomaController(IdiomaService idiomaService) {
+    private final ObjectMapper objectMapper;
+
+    public IdiomaController(IdiomaService idiomaService, ObjectMapper objectMapper) {
         this.idiomaService = idiomaService;
+        this.objectMapper = objectMapper;
     }
 
     @GetMapping
@@ -23,7 +28,8 @@ public class IdiomaController {
     }
 
     @PostMapping
-    public Idioma adicionar(@Validated @RequestBody Idioma idioma) {
+    public Idioma adicionar(@Validated @RequestBody IdiomaRequestDTO idiomaRequest) {
+        var idioma = objectMapper.convertValue(idiomaRequest, Idioma.class);
         return idiomaService.adicionar(idioma);
     }
 

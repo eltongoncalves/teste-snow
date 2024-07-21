@@ -1,5 +1,7 @@
 package com.snow.catalogo.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.snow.catalogo.model.dto.UsuarioRequestDTO;
 import com.snow.catalogo.model.entities.Usuario;
 import com.snow.catalogo.service.UsuarioService;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +15,11 @@ public class UsuarioController {
 
     private final UsuarioService usuarioService;
 
-    public UsuarioController(UsuarioService usuarioService) {
+    private final ObjectMapper objectMapper;
+
+    public UsuarioController(UsuarioService usuarioService,ObjectMapper objectMapper) {
         this.usuarioService = usuarioService;
+        this.objectMapper = objectMapper;
     }
 
     @GetMapping
@@ -23,7 +28,8 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public Usuario adicionar(@Validated @RequestBody Usuario usuario) {
+    public Usuario adicionar(@Validated @RequestBody UsuarioRequestDTO usuarioRequest) {
+        var usuario = objectMapper.convertValue(usuarioRequest, Usuario.class);
         return usuarioService.adicionar(usuario);
     }
 

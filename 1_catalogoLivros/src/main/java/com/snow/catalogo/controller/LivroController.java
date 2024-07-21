@@ -1,5 +1,7 @@
 package com.snow.catalogo.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.snow.catalogo.model.dto.LivroRequestDTO;
 import com.snow.catalogo.model.entities.Livro;
 import com.snow.catalogo.service.LivroService;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +17,11 @@ public class LivroController {
 
     private final LivroService livroService;
 
-    public LivroController(LivroService livroService) {
+    private final ObjectMapper objectMapper;
+
+    public LivroController(LivroService livroService, ObjectMapper objectMapper) {
         this.livroService = livroService;
+        this.objectMapper = objectMapper;
     }
 
     @GetMapping
@@ -25,7 +30,8 @@ public class LivroController {
     }
 
     @PostMapping
-    public Livro adicionar(@RequestBody Livro livro) {
+    public Livro adicionar(@RequestBody LivroRequestDTO livroRequest) {
+        var livro = objectMapper.convertValue(livroRequest, Livro.class);
         return livroService.adicionar(livro);
     }
 
