@@ -19,11 +19,10 @@ public class Livro {
     private String autor;
 
     @NotBlank(message = "Cadastrado por é obrigatório")
-    private String cadastradoPor;
+    private String usuario;
 
     @ManyToOne
     @JoinColumn(name = "idioma_id", nullable = false)
-    @NotBlank(message = "O idioma é obrigatório")
     private Idioma idioma;
 
 }

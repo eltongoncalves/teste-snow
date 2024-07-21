@@ -22,7 +22,7 @@ public class LivroController {
     }
 
     @PostMapping
-    public Livro adicionar(@Validated @RequestBody Livro livro) {
+    public Livro adicionar(@RequestBody Livro livro) {
         return livroService.adicionar(livro);
     }
 

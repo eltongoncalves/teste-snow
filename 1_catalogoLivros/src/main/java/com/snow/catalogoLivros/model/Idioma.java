@@ -15,10 +15,10 @@ public class Idioma {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O nome do idioma é obrigatório")
+//    @NotBlank(message = "O nome do idioma é obrigatório")
     private String nome;
 
-    @NotBlank(message = "A sigla do idioma é obrigatório")
+//    @NotBlank(message = "A sigla do idioma é obrigatório")
     private String sigla;
 
 }
