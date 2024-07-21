@@ -9,16 +9,13 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Idioma {
+public class Autor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O nome do idioma é obrigatório")
+    @NotBlank(message = "O nome do autor é obrigatório")
     private String nome;
-
-    @NotBlank(message = "A sigla do idioma é obrigatório")
-    private String sigla;
 
 }
