@@ -6,7 +6,6 @@ import com.snow.catalogoLivros.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -45,12 +44,12 @@ public class LivroService {
     public Optional<Livro> atualizar(Long id, Livro livro) {
         return livroRepository.findById(id)
                 .map(livroExistente -> {
-                    idiomaService.buscarPorId(livro.getIdioma().getId())
-                            .orElseThrow(() -> new RuntimeException("Idioma não existe"));
+                    livroExistente.setIdioma(idiomaService.buscarPorId(livro.getIdioma().getId())
+                            .orElseThrow(() -> new BadRequestException("Idioma não existe")));
+                    livroExistente.setAutor(autorService.buscarPorId(livro.getAutor().getId())
+                            .orElseThrow(() -> new BadRequestException("Autor não existe")));
                     livroExistente.setTitulo(livro.getTitulo());
-                    livroExistente.setAutor(livro.getAutor());
                     livroExistente.setUsuario(livro.getUsuario());
-                    livroExistente.setIdioma(livro.getIdioma());
                     return livroRepository.save(livroExistente);
                 });
     }
