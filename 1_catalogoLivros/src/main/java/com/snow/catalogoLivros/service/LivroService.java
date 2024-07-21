@@ -21,4 +21,30 @@ public class LivroService {
         return livroRepository.save(livro);
     }
 
+    public Optional<Livro> updateLivro(Long id, Livro livroDetails) {
+        Optional<Livro> livro = livroRepository.findById(id);
+        if (livro.isPresent()) {
+            Livro updatedLivro = livro.get();
+            updatedLivro.setTitulo(livroDetails.getTitulo());
+            updatedLivro.setAutor(livroDetails.getAutor());
+            updatedLivro.setIdioma(livroDetails.getIdioma());
+            updatedLivro.setCadastradoPor(livroDetails.getCadastradoPor());
+            return Optional.of(livroRepository.save(updatedLivro));
+        }
+        return Optional.empty();
+    }
+
+    public Optional<Livro> deleteLivro(Long id) {
+        Optional<Livro> livro = livroRepository.findById(id);
+        livro.ifPresent(livroRepository::delete);
+        return livro;
+    }
+
+    public List<Livro> findLivrosByAutor(String autor) {
+        return livroRepository.findByAutor(autor);
+    }
+
+    public List<Livro> findLivrosByTitulo(String titulo) {
+        return livroRepository.findByTituloContaining(titulo);
+    }
 }
