@@ -1,5 +1,6 @@
 package com.snow.catalogoLivros.service;
 
+import com.snow.catalogoLivros.exception.BadRequestException;
 import com.snow.catalogoLivros.model.Livro;
 import com.snow.catalogoLivros.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +19,22 @@ public class LivroService {
     @Autowired
     private IdiomaService idiomaService;
 
+    @Autowired
+    private AutorService autorService;
+
     public List<Livro> listarTodos() {
         return livroRepository.findAll();
     }
 
     public Livro adicionar(Livro livro) {
-        return idiomaService.buscarPorId(livro.getIdioma().getId())
-                .map(idioma -> {
-                    livro.setIdioma(idioma);
-                    return livroRepository.save(livro);
-                })
-                .orElseThrow(() -> new RuntimeException("Idioma não existe"));
+
+        livro.setIdioma(idiomaService.buscarPorId(livro.getIdioma().getId())
+                .orElseThrow(() -> new BadRequestException("Idioma não existe")));
+
+        livro.setAutor(autorService.buscarPorId(livro.getAutor().getId())
+                .orElseThrow(() -> new BadRequestException("Autor não existe")));
+
+         return livroRepository.save(livro);
     }
 
     public Optional<Livro> buscarPorId(Long id) {
@@ -55,7 +61,7 @@ public class LivroService {
     }
 
     public List<Livro> findLivrosByAutor(String autor) {
-        return livroRepository.findByAutor(autor);
+        return livroRepository.findByAutorNome(autor);
     }
 
     public List<Livro> findLivrosByTitulo(String titulo) {

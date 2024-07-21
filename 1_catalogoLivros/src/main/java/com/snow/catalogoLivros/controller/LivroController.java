@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,6 +54,6 @@ public class LivroController {
         } else if (titulo != null) {
             return livroService.findLivrosByTitulo(titulo);
         }
-        return livroService.listarTodos();
+        return new ArrayList<>();
     }
 }

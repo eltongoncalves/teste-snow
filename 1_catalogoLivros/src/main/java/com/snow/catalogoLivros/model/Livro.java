@@ -15,15 +15,16 @@ public class Livro {
     @NotBlank(message = "Título é obrigatório")
     private String titulo;
 
-    @NotBlank(message = "Autor é obrigatório")
-    private String autor;
-
     @NotBlank(message = "Cadastrado por é obrigatório")
     private String usuario;
 
     @ManyToOne
     @JoinColumn(name = "idioma_id", nullable = false)
     private Idioma idioma;
+
+    @ManyToOne
+    @JoinColumn(name = "autor_id", nullable = false)
+    private Autor autor;
 
 }
 
