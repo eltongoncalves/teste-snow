@@ -35,16 +35,7 @@ public class LivroController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletar(@PathVariable Long id) {
-        Optional<Livro> livro = livroService.deletar(id);
-        if (livro.isPresent()) {
-            Livro deletedLivro = livro.get();
-            String message = String.format("Livro com título '%s' em %s idioma foi deletado.", deletedLivro.getTitulo(), deletedLivro.getIdioma());
-            if ("English".equalsIgnoreCase(deletedLivro.getIdioma().getNome())) {
-                message = String.format("Book titled '%s' in English language was deleted.", deletedLivro.getTitulo());
-            }
-            return ResponseEntity.ok(message);
-        }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(livroService.deletar(id));
     }
 
     @GetMapping("/search")

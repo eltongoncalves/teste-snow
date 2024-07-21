@@ -6,6 +6,7 @@ import com.snow.catalogoLivros.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -54,10 +55,12 @@ public class LivroService {
                 });
     }
 
-    public Optional<Livro> deletar(Long id) {
-        Optional<Livro> livro = livroRepository.findById(id);
-        livro.ifPresent(livroRepository::delete);
-        return livro;
+    public String deletar(Long id) {
+        return livroRepository.findById(id).map(livro -> {
+            return ("English".equalsIgnoreCase(livro.getIdioma().getNome())) ?
+                    String.format("Book with titled '%s' the on author %s, in English language was deleted.", livro.getTitulo(), livro.getAutor().getNome()):
+                    String.format("Livro com título '%s' do autor %s, escrito no idioma %s foi deletado.", livro.getTitulo(), livro.getAutor().getNome(), livro.getIdioma().getNome());
+        }).orElseThrow(() -> new BadRequestException("Livro não existe"));
     }
 
     public List<Livro> findLivrosByAutor(String autor) {
