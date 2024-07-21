@@ -1,6 +1,7 @@
 package com.snow.catalogo.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.snow.catalogo.model.dto.UsuarioRequestDTO;
 import com.snow.catalogo.model.entities.Usuario;
 import com.snow.catalogo.repository.UsuarioRepository;
 import com.snow.catalogo.service.UsuarioService;
@@ -13,11 +14,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -70,17 +70,20 @@ class UsuarioControllerTest {
                 .andExpect(status().isNotFound());
     }
 
-
     @Test
     void testAdicionar() throws Exception {
-        when(usuarioService.adicionar(usuario)).thenReturn(usuario);
+
+        var usuarioRequestDTO = new UsuarioRequestDTO(usuario.getNome());
+        when(usuarioService.adicionar(any(Usuario.class))).thenReturn(usuario);
+
         mockMvc.perform(post("/api/usuarios")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(usuario)))
+                        .content(new ObjectMapper().writeValueAsString(usuarioRequestDTO)))
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.nome").value("Admin"));
-        verify(usuarioService, Mockito.times(1)).adicionar(usuario);
     }
+
 
     @Test
     void testBuscarPorId() throws Exception {

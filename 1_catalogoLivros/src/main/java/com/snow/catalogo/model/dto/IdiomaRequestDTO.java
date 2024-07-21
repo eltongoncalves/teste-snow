@@ -1,9 +1,11 @@
 package com.snow.catalogo.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class IdiomaRequestDTO {
 
     @NotBlank(message = "O nome do idioma é obrigatório")

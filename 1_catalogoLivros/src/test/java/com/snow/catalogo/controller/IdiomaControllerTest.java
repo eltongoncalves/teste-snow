@@ -1,6 +1,7 @@
 package com.snow.catalogo.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.snow.catalogo.model.dto.IdiomaRequestDTO;
 import com.snow.catalogo.model.entities.Idioma;
 import com.snow.catalogo.repository.IdiomaRepository;
 import com.snow.catalogo.service.IdiomaService;
@@ -18,6 +19,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -69,16 +72,21 @@ class IdiomaControllerTest {
                 .andExpect(status().isNotFound());
     }
 
-
     @Test
     void testAdicionar() throws Exception {
-        when(idiomaService.adicionar(idioma)).thenReturn(idioma);
+
+        var idiomaRequestDTO = new IdiomaRequestDTO("Francês", "FR");
+        var idiomaEntitie = new Idioma(1L,"Francês", "FR");
+
+        when(idiomaService.adicionar(any(Idioma.class))).thenReturn(idiomaEntitie);
+
         mockMvc.perform(post("/api/idiomas")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(idioma)))
+                        .content(new ObjectMapper().writeValueAsString(idiomaRequestDTO)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.nome").value("Inglês"));
-        verify(idiomaService, Mockito.times(1)).adicionar(idioma);
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.nome").value("Francês"))
+                .andExpect(jsonPath("$.sigla").value("FR"));
     }
 
     @Test

@@ -1,11 +1,15 @@
 package com.snow.catalogo.controller;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.snow.catalogo.model.dto.AutorRequestDTO;
+import com.snow.catalogo.model.dto.IdiomaRequestDTO;
 import com.snow.catalogo.model.entities.Autor;
+import com.snow.catalogo.model.entities.Idioma;
 import com.snow.catalogo.repository.AutorRepository;
 import com.snow.catalogo.service.AutorService;
 import org.junit.jupiter.api.BeforeEach;
@@ -73,14 +77,18 @@ class AutorControllerTest {
 
     @Test
     void testAdicionar() throws Exception {
-        when(autorService.adicionar(autor)).thenReturn(autor);
+
+        var autorRequestDTO = new AutorRequestDTO(autor.getNome());
+        when(autorService.adicionar(any(Autor.class))).thenReturn(autor);
+
         mockMvc.perform(post("/api/autores")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(autor)))
+                        .content(new ObjectMapper().writeValueAsString(autorRequestDTO)))
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.nome").value("Jorge Amado"));
-        verify(autorService, Mockito.times(1)).adicionar(autor);
     }
+
 
     @Test
     void testBuscarPorId() throws Exception {

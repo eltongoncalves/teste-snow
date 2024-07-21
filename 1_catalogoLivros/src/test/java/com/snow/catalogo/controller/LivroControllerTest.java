@@ -2,6 +2,8 @@ package com.snow.catalogo.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.snow.catalogo.exception.BadRequestException;
+import com.snow.catalogo.model.dto.AutorRequestDTO;
+import com.snow.catalogo.model.dto.LivroRequestDTO;
 import com.snow.catalogo.model.entities.Autor;
 import com.snow.catalogo.model.entities.Idioma;
 import com.snow.catalogo.model.entities.Livro;
@@ -22,6 +24,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -88,13 +93,18 @@ class LivroControllerTest {
 
     @Test
     void testAdicionar() throws Exception {
-        Mockito.when(livroService.buscarPorId(1L)).thenReturn(Optional.of(livro));
-        Mockito.when(livroService.adicionar(Mockito.any(Livro.class))).thenReturn(livro);
+
+        var livroRequestDTO = new LivroRequestDTO(livro.getTitulo(), usuario, idioma, autor);
+        when(livroService.adicionar(any(Livro.class))).thenReturn(livro);
 
         mockMvc.perform(post("/api/livros")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(livro)))
-                .andExpect(status().isOk());
+                        .content(new ObjectMapper().writeValueAsString(livroRequestDTO)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.titulo").value("Dom Casmurro"))
+                .andExpect(jsonPath("$.autor.nome").value("Machado de Assis"))
+                .andExpect(jsonPath("$.idioma.nome").value("Português"))
+                .andExpect(jsonPath("$.usuario.nome").value("João Silva"));
     }
 
     @Test
