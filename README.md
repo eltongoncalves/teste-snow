@@ -250,3 +250,15 @@ Bem-vindo à API do Catálogo de Livros! Esta API permite gerenciar usuários, l
 ```
 http://localhost:8080/swagger-ui/index.html
 ```
+
+
+# Adicionar Variável de Ambiente `PWD`
+
+## Linux
+
+Para adicionar a variável de ambiente `PWD` no Linux, siga estes passos:
+
+```
+export PWD=/caminho/para/seu/diretório
+```
+
