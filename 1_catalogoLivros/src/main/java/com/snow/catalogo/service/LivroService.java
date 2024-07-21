@@ -1,7 +1,7 @@
 package com.snow.catalogo.service;
 
 import com.snow.catalogo.exception.BadRequestException;
-import com.snow.catalogo.model.Livro;
+import com.snow.catalogo.model.entities.Livro;
 import com.snow.catalogo.repository.LivroRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;

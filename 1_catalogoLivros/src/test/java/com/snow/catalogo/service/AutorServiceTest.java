@@ -1,6 +1,6 @@
 package com.snow.catalogo.service;
 
-import com.snow.catalogo.model.Autor;
+import com.snow.catalogo.model.entities.Autor;
 import com.snow.catalogo.repository.AutorRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

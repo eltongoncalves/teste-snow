@@ -1,7 +1,7 @@
 package com.snow.catalogo.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.snow.catalogo.model.Usuario;
+import com.snow.catalogo.model.entities.Usuario;
 import com.snow.catalogo.repository.UsuarioRepository;
 import com.snow.catalogo.service.UsuarioService;
 import org.junit.jupiter.api.BeforeEach;

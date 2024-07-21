@@ -1,6 +1,6 @@
 package com.snow.catalogo.controller;
 
-import com.snow.catalogo.model.Idioma;
+import com.snow.catalogo.model.entities.Idioma;
 import com.snow.catalogo.service.IdiomaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

@@ -1,6 +1,6 @@
 package com.snow.catalogo.service;
 
-import com.snow.catalogo.model.Idioma;
+import com.snow.catalogo.model.entities.Idioma;
 import com.snow.catalogo.repository.IdiomaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

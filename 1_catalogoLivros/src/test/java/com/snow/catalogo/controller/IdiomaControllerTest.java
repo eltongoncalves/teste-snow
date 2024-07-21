@@ -1,7 +1,7 @@
 package com.snow.catalogo.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.snow.catalogo.model.Idioma;
+import com.snow.catalogo.model.entities.Idioma;
 import com.snow.catalogo.repository.IdiomaRepository;
 import com.snow.catalogo.service.IdiomaService;
 import org.junit.jupiter.api.BeforeEach;

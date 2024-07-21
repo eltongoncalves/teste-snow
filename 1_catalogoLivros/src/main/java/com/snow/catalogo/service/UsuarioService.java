@@ -1,7 +1,7 @@
 package com.snow.catalogo.service;
 
 
-import com.snow.catalogo.model.Usuario;
+import com.snow.catalogo.model.entities.Usuario;
 import com.snow.catalogo.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;

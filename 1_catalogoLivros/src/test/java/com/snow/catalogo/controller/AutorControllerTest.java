@@ -5,7 +5,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.snow.catalogo.model.Autor;
+import com.snow.catalogo.model.entities.Autor;
 import com.snow.catalogo.repository.AutorRepository;
 import com.snow.catalogo.service.AutorService;
 import org.junit.jupiter.api.BeforeEach;

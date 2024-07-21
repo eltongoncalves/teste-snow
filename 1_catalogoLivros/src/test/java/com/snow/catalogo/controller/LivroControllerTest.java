@@ -2,10 +2,10 @@ package com.snow.catalogo.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.snow.catalogo.exception.BadRequestException;
-import com.snow.catalogo.model.Autor;
-import com.snow.catalogo.model.Idioma;
-import com.snow.catalogo.model.Livro;
-import com.snow.catalogo.model.Usuario;
+import com.snow.catalogo.model.entities.Autor;
+import com.snow.catalogo.model.entities.Idioma;
+import com.snow.catalogo.model.entities.Livro;
+import com.snow.catalogo.model.entities.Usuario;
 import com.snow.catalogo.repository.LivroRepository;
 import com.snow.catalogo.service.LivroService;
 import org.junit.jupiter.api.BeforeEach;

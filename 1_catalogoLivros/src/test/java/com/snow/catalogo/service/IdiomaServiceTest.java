@@ -1,6 +1,6 @@
 package com.snow.catalogo.service;
 
-import com.snow.catalogo.model.Idioma;
+import com.snow.catalogo.model.entities.Idioma;
 import com.snow.catalogo.repository.IdiomaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

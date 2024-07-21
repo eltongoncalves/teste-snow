@@ -1,4 +1,4 @@
-package com.snow.catalogo.model;
+package com.snow.catalogo.model.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

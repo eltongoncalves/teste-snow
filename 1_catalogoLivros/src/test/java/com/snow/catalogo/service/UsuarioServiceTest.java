@@ -1,6 +1,6 @@
 package com.snow.catalogo.service;
 
-import com.snow.catalogo.model.Usuario;
+import com.snow.catalogo.model.entities.Usuario;
 import com.snow.catalogo.repository.UsuarioRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

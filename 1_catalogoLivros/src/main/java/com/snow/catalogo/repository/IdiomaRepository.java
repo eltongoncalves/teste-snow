@@ -1,6 +1,6 @@
 package com.snow.catalogo.repository;
 
-import com.snow.catalogo.model.Idioma;
+import com.snow.catalogo.model.entities.Idioma;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

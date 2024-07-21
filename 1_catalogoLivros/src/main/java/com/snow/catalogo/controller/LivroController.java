@@ -1,6 +1,6 @@
 package com.snow.catalogo.controller;
 
-import com.snow.catalogo.model.Livro;
+import com.snow.catalogo.model.entities.Livro;
 import com.snow.catalogo.service.LivroService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

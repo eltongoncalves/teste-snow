@@ -1,4 +1,4 @@
-package com.snow.catalogo.model;
+package com.snow.catalogo.model.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,13 +9,16 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Usuario {
+public class Idioma {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O nome do usuario é obrigatório")
+    @NotBlank(message = "O nome do idioma é obrigatório")
     private String nome;
+
+    @NotBlank(message = "A sigla do idioma é obrigatório")
+    private String sigla;
 
 }
