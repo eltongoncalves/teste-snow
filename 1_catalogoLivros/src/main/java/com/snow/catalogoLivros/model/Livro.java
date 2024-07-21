@@ -1,9 +1,6 @@
 package com.snow.catalogoLivros.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -21,11 +18,13 @@ public class Livro {
     @NotBlank(message = "Autor é obrigatório")
     private String autor;
 
-    @NotBlank(message = "Idioma é obrigatório")
-    private String idioma;
-
     @NotBlank(message = "Cadastrado por é obrigatório")
     private String cadastradoPor;
+
+    @ManyToOne
+    @JoinColumn(name = "idioma_id", nullable = false)
+    @NotBlank(message = "O idioma é obrigatório")
+    private Idioma idioma;
 
 }
 

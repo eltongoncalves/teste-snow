@@ -17,28 +17,28 @@ public class LivroController {
     private LivroService livroService;
 
     @GetMapping
-    public List<Livro> getAllLivros() {
-        return livroService.getAllLivros();
+    public List<Livro> listarTodos() {
+        return livroService.listarTodos();
     }
 
     @PostMapping
-    public Livro addLivro(@Validated @RequestBody Livro livro) {
-        return livroService.addLivro(livro);
+    public Livro adicionar(@Validated @RequestBody Livro livro) {
+        return livroService.adicionar(livro);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Livro> updateLivro(@PathVariable Long id, @Validated @RequestBody Livro livroDetails) {
-        Optional<Livro> updatedLivro = livroService.updateLivro(id, livroDetails);
+    public ResponseEntity<Livro> atualizar(@PathVariable Long id, @Validated @RequestBody Livro livroDetails) {
+        Optional<Livro> updatedLivro = livroService.atualizar(id, livroDetails);
         return updatedLivro.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteLivro(@PathVariable Long id) {
-        Optional<Livro> livro = livroService.deleteLivro(id);
+    public ResponseEntity<String> deletar(@PathVariable Long id) {
+        Optional<Livro> livro = livroService.deletar(id);
         if (livro.isPresent()) {
             Livro deletedLivro = livro.get();
             String message = String.format("Livro com título '%s' em %s idioma foi deletado.", deletedLivro.getTitulo(), deletedLivro.getIdioma());
-            if ("English".equalsIgnoreCase(deletedLivro.getIdioma())) {
+            if ("English".equalsIgnoreCase(deletedLivro.getIdioma().getNome())) {
                 message = String.format("Book titled '%s' in English language was deleted.", deletedLivro.getTitulo());
             }
             return ResponseEntity.ok(message);
@@ -53,6 +53,6 @@ public class LivroController {
         } else if (titulo != null) {
             return livroService.findLivrosByTitulo(titulo);
         }
-        return livroService.getAllLivros();
+        return livroService.listarTodos();
     }
 }

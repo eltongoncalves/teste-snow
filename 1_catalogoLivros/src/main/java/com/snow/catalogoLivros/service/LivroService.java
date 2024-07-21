@@ -13,15 +13,15 @@ public class LivroService {
     @Autowired
     private LivroRepository livroRepository;
 
-    public List<Livro> getAllLivros() {
+    public List<Livro> listarTodos() {
         return livroRepository.findAll();
     }
 
-    public Livro addLivro(Livro livro) {
+    public Livro adicionar(Livro livro) {
         return livroRepository.save(livro);
     }
 
-    public Optional<Livro> updateLivro(Long id, Livro livroDetails) {
+    public Optional<Livro> atualizar(Long id, Livro livroDetails) {
         Optional<Livro> livro = livroRepository.findById(id);
         if (livro.isPresent()) {
             Livro updatedLivro = livro.get();
@@ -34,7 +34,7 @@ public class LivroService {
         return Optional.empty();
     }
 
-    public Optional<Livro> deleteLivro(Long id) {
+    public Optional<Livro> deletar(Long id) {
         Optional<Livro> livro = livroRepository.findById(id);
         livro.ifPresent(livroRepository::delete);
         return livro;
