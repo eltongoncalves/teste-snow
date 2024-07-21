@@ -22,6 +22,9 @@ public class LivroService {
     @Autowired
     private AutorService autorService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     public List<Livro> listarTodos() {
         return livroRepository.findAll();
     }
@@ -34,7 +37,10 @@ public class LivroService {
         livro.setAutor(autorService.buscarPorId(livro.getAutor().getId())
                 .orElseThrow(() -> new BadRequestException("Autor não existe")));
 
-         return livroRepository.save(livro);
+        livro.setUsuario(usuarioService.buscarPorId(livro.getUsuario().getId())
+                .orElseThrow(() -> new BadRequestException("Usuario não existe")));
+
+        return livroRepository.save(livro);
     }
 
     public Optional<Livro> buscarPorId(Long id) {
@@ -44,18 +50,20 @@ public class LivroService {
     public Optional<Livro> atualizar(Long id, Livro livro) {
         return livroRepository.findById(id)
                 .map(livroExistente -> {
+                    livroExistente.setTitulo(livro.getTitulo());
                     livroExistente.setIdioma(idiomaService.buscarPorId(livro.getIdioma().getId())
                             .orElseThrow(() -> new BadRequestException("Idioma não existe")));
                     livroExistente.setAutor(autorService.buscarPorId(livro.getAutor().getId())
                             .orElseThrow(() -> new BadRequestException("Autor não existe")));
-                    livroExistente.setTitulo(livro.getTitulo());
-                    livroExistente.setUsuario(livro.getUsuario());
+                    livroExistente.setUsuario(usuarioService.buscarPorId(livro.getUsuario().getId())
+                            .orElseThrow(() -> new BadRequestException("Usuario não existe")));
                     return livroRepository.save(livroExistente);
                 });
     }
 
     public String deletar(Long id) {
         return livroRepository.findById(id).map(livro -> {
+            livroRepository.delete(livro);
             return ("English".equalsIgnoreCase(livro.getIdioma().getNome())) ?
                     String.format("Book with titled '%s' the on author %s, in English language was deleted.", livro.getTitulo(), livro.getAutor().getNome()):
                     String.format("Livro com título '%s' do autor %s, escrito no idioma %s foi deletado.", livro.getTitulo(), livro.getAutor().getNome(), livro.getIdioma().getNome());
