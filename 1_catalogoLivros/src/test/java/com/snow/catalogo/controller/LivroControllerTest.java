@@ -2,7 +2,6 @@ package com.snow.catalogo.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.snow.catalogo.exception.BadRequestException;
-import com.snow.catalogo.model.dto.AutorRequestDTO;
 import com.snow.catalogo.model.dto.LivroRequestDTO;
 import com.snow.catalogo.model.entities.Autor;
 import com.snow.catalogo.model.entities.Idioma;
@@ -24,7 +23,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
