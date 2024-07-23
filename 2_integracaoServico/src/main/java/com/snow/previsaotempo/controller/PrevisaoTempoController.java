@@ -1,6 +1,7 @@
 package com.snow.previsaotempo.controller;
 
 import com.snow.previsaotempo.model.client.EnvioPrevisaoResponse;
+import com.snow.previsaotempo.model.client.WeatherResponse;
 import com.snow.previsaotempo.schedule.TarefasAgendadas;
 import com.snow.previsaotempo.service.ServicoPrevisaoTempo;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,7 @@ public class PrevisaoTempoController {
     }
 
     @GetMapping("/previsao-tempo")
-    public String obterPrevisaoTempo(@RequestParam String localizacao) {
+    public WeatherResponse obterPrevisaoTempo(@RequestParam String localizacao) {
         return servicoPrevisaoTempo.obterPrevisaoTempo(localizacao);
     }
 

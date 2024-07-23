@@ -26,11 +26,23 @@ public class ServicoEmail {
     }
 
     public void enviarEmailParaListaHtml(List<String> destinatarios, String assunto, String conteudoHtml) {
-        // Cria uma nova mensagem MIME
         MimeMessage mensagem = emailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mensagem, true);
             helper.setTo(destinatarios.toArray(new String[0]));
+            helper.setSubject(assunto);
+            helper.setText(conteudoHtml, true); // Define o conteúdo como HTML
+            emailSender.send(mensagem);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void enviarEmailParaEmailHtml(String destinatario, String assunto, String conteudoHtml) {
+        MimeMessage mensagem = emailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(mensagem, true);
+            helper.setTo(destinatario);
             helper.setSubject(assunto);
             helper.setText(conteudoHtml, true); // Define o conteúdo como HTML
             emailSender.send(mensagem);

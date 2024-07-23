@@ -64,30 +64,20 @@
 <body>
 <div class="container">
     <header>
-        <h1>Previsão do Tempo</h1>
+        <img id="forecast-icon" th:src="@{${forecastConditionIcon}}" alt="Condição do Dia">
+        <h1>Previsão do Tempo para amanhã</h1>
     </header>
-    <section class="current-weather">
-        <h2>Condição Atual</h2>
-        <div class="location">
-            <h3>Localização:</h3>
-            <p id="location-name" th:text="${locationName}"></p>
-            <p id="location-region" th:text="${locationRegion}"></p>
-        </div>
-        <div class="current-info">
-            <img id="weather-icon" th:src="@{${currentConditionIcon}}" alt="Condição Atual">
-            <p id="condition-text" th:text="${currentConditionText}"></p>
-            <p id="temperature" th:text="${currentTempC} + '°C'"></p>
-            <p id="feels-like" th:text="'Sensação térmica: ' + ${currentFeelsLikeC} + '°C'"></p>
-            <p id="humidity" th:text="'Umidade: ' + ${currentHumidity} + '%'"></p>
-            <p id="wind" th:text="'Vento: ' + ${currentWindMph} + ' mph'"></p>
-            <p id="pressure" th:text="'Pressão: ' + ${currentPressureMb} + ' mb'"></p>
-        </div>
-    </section>
     <section class="forecast">
-        <h2>Previsão para o Dia</h2>
+
+        <h2 th:text="'Data: ' + ${forecastDate}"> </h2>
+                <div class="location">
+                    <h3>Localização:</h3>
+                    <p>
+                        <span id="location-name" th:text="${locationName}"></span> /
+                        <span id="location-region" th:text="${locationRegion}"></span>
+                    </p>
+                </div>
         <div class="forecast-day">
-            <h3 th:text="'Data: ' + ${forecastDate}"></h3>
-            <img id="forecast-icon" th:src="@{${forecastConditionIcon}}" alt="Condição do Dia">
             <p id="forecast-condition" th:text="${forecastConditionText}"></p>
             <p id="max-temp" th:text="'Máx: ' + ${maxTempC} + '°C'"></p>
             <p id="min-temp" th:text="'Mín: ' + ${minTempC} + '°C'"></p>
@@ -97,7 +87,7 @@
         </div>
     </section>
     <footer>
-        <p>&copy; 2024 Previsão do Tempo</p>
+        <p>&copy; 2024 Previsão do Tempo Snow - Desafio Elton Goncalves</p>
     </footer>
 </div>
 </body>

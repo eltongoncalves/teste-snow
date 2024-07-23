@@ -1,32 +1,20 @@
 package com.snow.previsaotempo.model.client;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
 import java.util.List;
 
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class EnvioPrevisaoResponse {
 
-    private List<String> destinatarios;
+    private List<String> destinatarios =  new ArrayList<>();
     private String conteudo;
-
-    public EnvioPrevisaoResponse(List<String> destinatarios, String conteudo) {
-        this.destinatarios = destinatarios;
-        this.conteudo = conteudo;
-    }
-
-    public List<String> getDestinatarios() {
-        return destinatarios;
-    }
-
-    public void setDestinatarios(List<String> destinatarios) {
-        this.destinatarios = destinatarios;
-    }
-
-    public String getConteudo() {
-        return conteudo;
-    }
-
-    public void setConteudo(String conteudo) {
-        this.conteudo = conteudo;
-    }
 
     @Override
     public String toString() {
