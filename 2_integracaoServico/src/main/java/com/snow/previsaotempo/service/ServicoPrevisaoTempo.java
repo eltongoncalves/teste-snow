@@ -13,7 +13,7 @@ public class ServicoPrevisaoTempo {
 
     public String obterPrevisaoTempo(String localizacao) {
         try {
-            String urlApi = "https://api.weatherapi.com/v1/forecast.json?key=" + chaveApi + "&q="+localizacao+"&days=2";
+            String urlApi = "https://api.weatherapi.com/v1/forecast.json?key=" + chaveApi + "&q="+localizacao+"&days=7";
             String resposta = restTemplate.getForObject(urlApi, String.class);
             ObjectMapper objectMapper = new ObjectMapper();
             WeatherResponse weatherResponse = objectMapper.readValue(resposta, WeatherResponse.class);
