@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão do Tempo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        section {
+            background: #fff;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .current-weather, .forecast {
+            margin-bottom: 20px;
+        }
+
+        .current-weather img, .forecast-day img {
+            width: 64px;
+            height: 64px;
+        }
+
+        .location p, .current-info p, .forecast-day p {
+            margin: 10px 0;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Previsão do Tempo</h1>
+    </header>
+    <section class="current-weather">
+        <h2>Condição Atual</h2>
+        <div class="location">
+            <h3>Localização:</h3>
+            <p id="location-name">Belém</p>
+            <p id="location-region">Para, Brasilien</p>
+        </div>
+        <div class="current-info">
+            <img id="weather-icon" src="//cdn.weatherapi.com/weather/64x64/night/143.png" alt="Condição Atual">
+            <p id="condition-text">Mist</p>
+            <p id="temperature">23.2°C</p>
+            <p id="feels-like">Sensação térmica: 25.6°C</p>
+            <p id="humidity">Umidade: 95%</p>
+            <p id="wind">Vento: 5.1 mph</p>
+            <p id="pressure">Pressão: 1014 mb</p>
+        </div>
+    </section>
+    <section class="forecast">
+        <h2>Previsão para o Dia</h2>
+        <div class="forecast-day">
+            <h3>Data: 2024-07-23</h3>
+            <img id="forecast-icon" src="//cdn.weatherapi.com/weather/64x64/day/176.png" alt="Condição do Dia">
+            <p id="forecast-condition">Patchy rain nearby</p>
+            <p id="max-temp">Máx: 33.4°C</p>
+            <p id="min-temp">Mín: 23.2°C</p>
+            <p id="average-temp">Média: 26.3°C</p>
+            <p id="precipitation">Precipitação: 4.64 mm</p>
+            <p id="uv-index">Índice UV: 11.0</p>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Previsão do Tempo</p>
+    </footer>
+</div>
+</body>
+</html>

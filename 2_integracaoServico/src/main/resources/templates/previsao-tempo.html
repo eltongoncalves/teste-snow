@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão do Tempo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        section {
+            background: #fff;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .current-weather, .forecast {
+            margin-bottom: 20px;
+        }
+
+        .current-weather img, .forecast-day img {
+            width: 64px;
+            height: 64px;
+        }
+
+        .location p, .current-info p, .forecast-day p {
+            margin: 10px 0;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <img id="forecast-icon" th:src="@{${forecastConditionIcon}}" alt="Condição do Dia">
+        <h1>Previsão do Tempo para amanhã</h1>
+    </header>
+    <section class="forecast">
+
+        <h2 th:text="'Data: ' + ${forecastDate}"> </h2>
+                <div class="location">
+                    <h3>Localização:</h3>
+                    <p>
+                        <span id="location-name" th:text="${locationName}"></span> /
+                        <span id="location-region" th:text="${locationRegion}"></span>
+                    </p>
+                </div>
+        <div class="forecast-day">
+            <p id="forecast-condition" th:text="${forecastConditionText}"></p>
+            <p id="max-temp" th:text="'Máx: ' + ${maxTempC} + '°C'"></p>
+            <p id="min-temp" th:text="'Mín: ' + ${minTempC} + '°C'"></p>
+            <p id="average-temp" th:text="'Média: ' + ${avgTempC} + '°C'"></p>
+            <p id="precipitation" th:text="'Precipitação: ' + ${totalPrecipMm} + ' mm'"></p>
+            <p id="uv-index" th:text="'Índice UV: ' + ${uvIndex}"></p>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Previsão do Tempo Snow - Desafio Elton Goncalves</p>
+    </footer>
+</div>
+</body>
+</html>
