@@ -3,6 +3,7 @@
     <envs>
       <env name="PWD" value="password" />
       <env name="PWD_EMAIL" value="csmp gwvp nije boey" />
+      <env name="CHAVE_API" value="d04c1a7db73948b396b51427242207" />
     </envs>
     <option name="MAIN_CLASS_NAME" value="com.snow.previsaotempo.PrevisaotempoApplication" />
     <module name="previsaotempo" />
