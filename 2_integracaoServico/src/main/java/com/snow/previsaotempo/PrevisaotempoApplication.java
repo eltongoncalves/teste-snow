@@ -12,4 +12,5 @@ public class PrevisaotempoApplication {
 		SpringApplication.run(PrevisaotempoApplication.class, args);
 	}
 
+
 }
