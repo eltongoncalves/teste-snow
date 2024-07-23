@@ -1,0 +1,23 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="PrevisaotempoApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+    <envs>
+      <env name="PWD" value="password" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="com.snow.previsaotempo.PrevisaotempoApplication" />
+    <module name="previsaotempo" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.snow.previsaotempo.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+      <option name="credential" />
+      <option name="region" />
+      <option name="useCurrentConnection" value="false" />
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
