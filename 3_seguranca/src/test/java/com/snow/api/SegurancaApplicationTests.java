@@ -1,4 +1,4 @@
-package com.snow.seguranca;
+package com.snow.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
