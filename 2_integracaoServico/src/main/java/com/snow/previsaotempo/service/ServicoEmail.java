@@ -31,7 +31,7 @@ public class ServicoEmail {
             MimeMessageHelper helper = new MimeMessageHelper(mensagem, true);
             helper.setTo(destinatarios.toArray(new String[0]));
             helper.setSubject(assunto);
-            helper.setText(conteudoHtml, true); // Define o conteúdo como HTML
+            helper.setText(conteudoHtml, true);
             emailSender.send(mensagem);
         } catch (MessagingException e) {
             e.printStackTrace();
@@ -44,7 +44,7 @@ public class ServicoEmail {
             MimeMessageHelper helper = new MimeMessageHelper(mensagem, true);
             helper.setTo(destinatario);
             helper.setSubject(assunto);
-            helper.setText(conteudoHtml, true); // Define o conteúdo como HTML
+            helper.setText(conteudoHtml, true);
             emailSender.send(mensagem);
         } catch (MessagingException e) {
             e.printStackTrace();
