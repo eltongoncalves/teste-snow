@@ -250,19 +250,19 @@ Para adicionar a variável de ambiente `PWD` no Linux, siga estes passos:
 ```
 
 
-### Execução
+## Execução do Projeto
 
-```shell
-./mvnw spring-boot:run
-```
+Para executar o projeto de forma autônoma:
+
+1**Compile e Execute a Aplicação**
+    ```bash
+    ./mvnw spring-boot:run
+    ```
+
+2**Acesse a Aplicação**
+    - A aplicação estará disponível em [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html).
 
 
-
-### Acesso Swagger
-
-```
-http://localhost:8080/swagger-ui/index.html
-```
 
 
 
@@ -644,16 +644,159 @@ Para adicionar a variável de ambiente `PWD` no Linux, siga estes passos:
 
 ### Execução
 
-```shell
-./mvnw spring-boot:run
-```
+## Execução do Projeto
+
+Para executar o projeto de forma autônoma:
+
+1**Compile e Execute a Aplicação**
+    ```bash
+    ./mvnw spring-boot:run
+    ```
+
+2**Acesse a Aplicação**
+    - A aplicação estará disponível em [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html).
 
 
 
-### Acesso Swagger
 
-```
-http://localhost:8080/swagger-ui/index.html
-```
+# Teste 3: Mapeamento de Objetos e Segurança
+# Documentação da API: Gerenciamento de Usuários e Roles
 
+## Descrição
+
+Esta API permite gerenciar usuários e roles (papéis) com autenticação e autorização. A aplicação inclui endpoints para:
+
+- Registro de novos usuários
+- Login de usuários existentes
+- Consulta de todos os usuários
+- Consulta dos dados do usuário logado
+
+## Servidor
+
+- **URL Base**: [http://localhost:8080](http://localhost:8080)
+
+## Endpoints
+
+### 1. Registrar Novo Usuário
+
+- **Método**: `POST`
+- **URL**: `/auth/signup`
+- **Descrição**: Registra um novo usuário na aplicação.
+- **Corpo da Requisição**:
+    ```json
+    {
+        "id": 1,
+        "username": "string",
+        "password": "string",
+        "roles": ["string"]
+    }
+    ```
+- **Resposta de Sucesso**:
+    - **Código**: `200 OK`
+    - **Corpo**:
+        ```json
+        {
+            "id": 1,
+            "username": "string",
+            "password": "string",
+            "roles": ["string"]
+        }
+        ```
+
+### 2. Login de Usuário
+
+- **Método**: `POST`
+- **URL**: `/auth/signin`
+- **Descrição**: Realiza o login de um usuário e retorna um token JWT.
+- **Corpo da Requisição**:
+    ```json
+    {
+        "username": "string",
+        "password": "string"
+    }
+    ```
+- **Resposta de Sucesso**:
+    - **Código**: `200 OK`
+    - **Corpo**:
+        ```json
+        "string"  // Token JWT
+        ```
+
+### 3. Consultar Todos os Usuários
+
+- **Método**: `GET`
+- **URL**: `/users`
+- **Descrição**: Consulta todos os usuários registrados na aplicação.
+- **Resposta de Sucesso**:
+    - **Código**: `200 OK`
+    - **Corpo**:
+        ```json
+        [
+            {
+                "username": "string",
+                "roles": ["string"]
+            }
+        ]
+        ```
+
+### 4. Consultar Dados do Usuário Logado
+
+- **Método**: `GET`
+- **URL**: `/users/me`
+- **Descrição**: Consulta os dados do usuário atualmente logado.
+- **Resposta de Sucesso**:
+    - **Código**: `200 OK`
+    - **Corpo**:
+        ```json
+        {
+            "username": "string",
+            "roles": ["string"]
+        }
+        ```
+
+## Componentes
+
+### Schemas
+
+#### Usuario
+
+- **Tipo**: `object`
+- **Propriedades**:
+    - `id`: `integer` (formato `int64`)
+    - `username`: `string`
+    - `password`: `string`
+    - `roles`: `array` de `string`
+
+#### AuthRequestDTO
+
+- **Tipo**: `object`
+- **Propriedades**:
+    - `username`: `string`
+    - `password`: `string`
+
+#### UsuarioDTO
+
+- **Tipo**: `object`
+- **Propriedades**:
+    - `username`: `string`
+    - `roles`: `array` de `string`
+
+## Segurança
+
+- **Autenticação**: Implementada utilizando JWT.
+- **Proteção contra CSRF**: Configurada para prevenir ataques Cross-Site Request Forgery.
+- **Proteção contra XSS**: Configurada para prevenir ataques Cross-Site Scripting.
+- **Proteção contra SQL Injection**: Implementada usando práticas seguras de acesso a banco de dados.
+
+## Execução do Projeto
+
+Para executar o projeto de forma autônoma:
+
+1**Compile e Execute a Aplicação**
+    ```bash
+    ./mvnw spring-boot:run
+    ```
+
+2**Acesse a Aplicação**
+    - A aplicação estará disponível em [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html).
 
