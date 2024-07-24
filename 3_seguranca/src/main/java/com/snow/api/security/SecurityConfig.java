@@ -31,21 +31,41 @@ public class SecurityConfig {
     }
 
 
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http.csrf(AbstractHttpConfigurer::disable)
+//                .authorizeHttpRequests(authz -> authz
+//                        .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()
+//                        .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()
+//                        .anyRequest().authenticated()
+//                )
+//                .sessionManagement(session -> session
+//                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                )
+//                .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+//
+//        return http.build();
+//    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
+        http
+                .csrf(AbstractHttpConfigurer::disable) // Desativa CSRF
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()
-                        .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/auth/signup", "/auth/signin").permitAll() // Permite acesso público às rotas de autenticação
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll() // Permite acesso público ao Swagger
+                        .requestMatchers("/users/me").authenticated() // Requer autenticação para /users/me
+                        .requestMatchers("/users").hasRole("ADMIN") // Requer role ADMIN para /users
+                        .anyRequest().authenticated() // Requer autenticação para todas as outras rotas
                 )
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Configura a sessão como stateless
                 )
-                .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class); // Adiciona o filtro JWT
 
         return http.build();
     }
+
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
@@ -65,8 +85,9 @@ public class SecurityConfig {
         return authProvider;
     }
 
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() {
-//        return web -> web.ignoring().dispatcherTypeMatchers("/css/**", "/js/**", "/images/**", "/webjars/**");
-//    }
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers("/swagger-ui/**", "/v3/api-docs/**"); // Ignora a segurança para o Swagger
+    }
+
 }
