@@ -1,3 +1,43 @@
+# Documentação para Execução do Projeto com Docker Compose
+
+## Visão Geral
+
+Este projeto contém três serviços Docker que compõem a aplicação:
+1. `catalogolivros`: Serviço de catálogo de livros.
+2. `integracaoservico`: Serviço de integração de previsão do tempo.
+3. `seguranca`: Serviço de segurança e autenticação.
+
+Os serviços são conectados através de uma rede Docker chamada `app-network`.
+
+## Pré-requisitos
+
+Antes de iniciar, certifique-se de ter os seguintes pré-requisitos instalados em sua máquina:
+- Docker
+- Docker Compose
+
+## Passo 2: Configurar Variáveis de Ambiente
+
+Certifique-se de definir as seguintes variáveis de ambiente no arquivo `docker-compose.yml`:
+
+- **Para o serviço `catalogolivros`**:
+  - `PWD`: Senha de exemplo para o serviço.
+
+- **Para o serviço `integracaoservico`**:
+  - `PWD`: Senha de exemplo para o serviço.
+  - `PWD_EMAIL`: Senha do email para envio de previsões.
+  - `CHAVE_API`: Chave da API do serviço de previsão do tempo.
+
+## Passo 3: Executar os Serviços com Docker Compose
+
+Execute o comando abaixo para iniciar todos os serviços definidos no arquivo `docker-compose.yml`:
+
+```bash
+docker-compose up --build
+```
+
+
+
+
 # Teste 1 - Catálogo de Livros API
 
 Bem-vindo à API do Catálogo de Livros! Esta API permite gerenciar usuários, livros, idiomas e autores. Utiliza o padrão OpenAPI 3.0 para definição de suas interfaces.

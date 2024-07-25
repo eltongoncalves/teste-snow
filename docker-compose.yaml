@@ -12,18 +12,18 @@ services:
     environment:
       - PWD=password
 
-  # integracaoservico:
-  #   build:
-  #     context: ./2_integracaoServico
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "8082:8080"
-  #   networks:
-  #     - app-network
-  #   environment:
-  #     - PWD=password
-  #     - PWD_EMAIL= senha 
-  #     - CHAVE_API= chave
+  integracaoservico:
+    build:
+      context: ./2_integracaoServico
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8080"
+    networks:
+      - app-network
+    environment:
+      - PWD=password
+      - PWD_EMAIL= SENHA_EMAIL
+      - CHAVE_API= CHAVE_API
 
   seguranca:
     build:
